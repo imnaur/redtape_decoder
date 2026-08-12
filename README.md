@@ -38,3 +38,37 @@ Make sure you have **Python 3.13+** installed on your machine.
    ```bash
    git clone [https://github.com/imnaur/redtape_decoder.git](https://github.com/imnaur/redtape_decoder.git)
    cd redtape_decoder
+2. Create and activate a virtual environment:
+python -m venv .venv
+# On macOS/Linux:
+source .venv/bin/activate
+# On Windows:
+# .venv\Scripts\activate
+3. Install dependencies:
+pip install -r requirements.txt
+4. Run the Streamlit app:
+streamlit run ui/app.py
+
+
+##  🛠️ Tech Stack
+
+Frontend / UI: Streamlit
+
+AI / LLM Integration: Custom core client (core.llm_client) communicating with modern LLMs.
+
+Language Processing: Python, JSON parsing.
+
+
+## 📝 Project Structure
+
+redtape_decoder/
+│
+├── core/
+│   └── llm_client.py       # Logic for communicating with the LLM API
+│
+├── ui/
+│   └── app.py              # Main Streamlit web interface
+│
+├── .venv/                  # Virtual environment
+└── README.md               # Project documentation EN
+└── README_DE.md            # Project documentation GERMAN
