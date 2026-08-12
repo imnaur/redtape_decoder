@@ -1,0 +1,19 @@
+# withot env
+venv/
+.venv/
+env/
+
+# without git
+.git/
+.gitignore
+
+# without cash
+__pycache__/
+*.pyc
+*.pyo
+__pycache__
+
+# without passwort and env
+.env
+.DS_Store
+*.sqlite3
