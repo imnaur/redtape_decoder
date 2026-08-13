@@ -1,7 +1,7 @@
 import json
 import sys
 from pathlib import Path
-from ui.languages import ui_texts
+from languages import ui_texts
 
 root_dir = Path(__file__).resolve().parent.parent
 sys.path.append(str(root_dir))
