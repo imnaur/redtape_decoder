@@ -1,4 +1,3 @@
-import json
 import sys
 from pathlib import Path
 
@@ -9,7 +8,8 @@ from core.processor import extract_text_from_file
 from ui.languages import ui_texts
 
 root_dir = Path(__file__).resolve().parent.parent
-sys.path.append(str(root_dir))
+if str(root_dir) not in sys.path:
+    sys.path.append(str(root_dir))
 
 st.set_page_config(page_title="Redtape Decoder", page_icon="📬", layout="centered")
 
