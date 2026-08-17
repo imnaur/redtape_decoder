@@ -11,7 +11,7 @@ ui_texts = {
         "error_empty": "Пожалуйста, вставьте текст или загрузите файл!",
         "input_mode": "Как вы хотите передать письмо?",
         "mode_text": "Вставить текст вручную",
-        "mode_file": "Загрузить файл (PDF, TXT)",
+        "mode_file": "Загрузить файл (PDF, TXT, PNG, JPEG, JPG)",
         "paste_text": "Вставьте текст письма на немецком языке (Amtsdeutsch):",
         'letter': 'Расшифруйте письмо 📩',
         "description": "Как легко разобраться в официальных письмах на немецком языке"
@@ -28,7 +28,7 @@ ui_texts = {
         "error_empty": "Будь ласка, вставте текст або завантажте файл!",
         "input_mode": "Як ви хочете передати лист?",
         "mode_text": "Вставити текст вручну",
-        "mode_file": "Завантажити файл (PDF, TXT)",
+        "mode_file": "Завантажити файл (PDF, TXT, PNG, JPEG, JPG)",
         "paste_text": "Вставте текст листа німецькою мовою (Amtsdeutsch):",
         'letter': 'Розшифруйте лист 📩',
         "description": "Як легко розшифрувати офіційні німецькі листи"
@@ -45,7 +45,7 @@ ui_texts = {
         "error_empty": "Please paste the text or upload a file!",
         "input_mode": "How would you like to provide the letter?",
         "mode_text": "Paste text manually",
-        "mode_file": "Upload a file (PDF, TXT)",
+        "mode_file": "Upload a file (PDF, TXT, PNG, JPEG, JPG)",
         "paste_text": "Paste the text of the German letter (Amtsdeutsch):",
         'letter': 'Decipher the letter 📩',
         "description": "Decoding official German letters the easy way"
@@ -63,7 +63,7 @@ ui_texts = {
         "error_empty": "Bitte fügen Sie Text ein oder laden Sie eine Datei hoch!",
         "input_mode": "Wie möchten Sie den Brief übergeben?",
         "mode_text": "Text manuell eingeben",
-        "mode_file": "Datei hochladen (PDF, TXT)",
+        "mode_file": "Datei hochladen (PDF, TXT, PNG, JPEG, JPG)",
         "paste_text": "Fügen Sie den Text des deutschen Schreibens (Amtsdeutsch) ein:",
         'letter': 'Entschlüssele den Brief 📩',
         "description": "Deutsche Behördenbriefe ganz einfach entschlüsseln"
