@@ -30,12 +30,13 @@ class LetterAnalysis(BaseModel):
     consequences_if_ignored: Optional[str] = None
 
 
-def send_to_llm(text: Optional[str] = None, image_file=None, target_language: str = "Russian") -> LetterAnalysis:
+def send_to_llm(text: Optional[str] = None, image_files: Optional[list[Any]] = None,
+                target_language: str = "Russian") -> LetterAnalysis:
     """Send a bureaucratic letter  (text or image) to LLM and returns the analysis.
 
     Args:
         text: The text of the bureaucratic letter.
-        image_file: Streamlit UploadedFile object (optional if text is provided).
+        image_files: Streamlit UploadedFile objects (optional if text is provided).
         target_language: The language for the explanation.
 
     Returns:
@@ -43,8 +44,8 @@ def send_to_llm(text: Optional[str] = None, image_file=None, target_language: st
     """
 
     has_text = text and text.strip() != ""
-    has_image = image_file is not None
-    if not has_text and not has_image:
+    has_images = image_files is not None and len(image_files) > 0
+    if not has_text and not has_images:
         raise ValueError("Please provide the text or an image of the letter!")
 
     user_content: list[dict[str, Any]] = [
@@ -54,15 +55,19 @@ def send_to_llm(text: Optional[str] = None, image_file=None, target_language: st
     if has_text:
         user_content.append({"type": "text", "text": f"Letter text: \n{text}"})
 
-    if has_image:
-        image_bytes = image_file.getvalue()
-        base64_image = base64.b64encode(image_bytes).decode("utf-8")
+    if has_images:
+        for image_file in image_files:
+            image_bytes = image_file.getvalue()
+            base64_image = base64.b64encode(image_bytes).decode("utf-8")
 
-        mime_type, _ = mimetypes.guess_type(image_file.name)
-        if not mime_type or not mime_type.startswith("image/"):
-            mime_type = "image/jpeg"
+            mime_type, _ = mimetypes.guess_type(image_file.name)
+            if not mime_type or not mime_type.startswith("image/"):
+                mime_type = "image/jpeg"
 
-        user_content.append({"type": "image_url", "image_url": {"url": f"data:{mime_type};base64,{base64_image}"}})
+            user_content.append({
+                "type": "image_url",
+                "image_url": {"url": f"data:{mime_type};base64,{base64_image}"}
+            })
 
     try:
         response = cast(Any, client.chat).completions.create(

@@ -27,8 +27,7 @@ st.subheader("Decoding official German letters the easy way")
 input_choice = st.radio(t["input_mode"], [t["mode_text"], t["mode_file"]], horizontal=True)
 
 final_letter_text = ""
-uploaded_image = None
-uploaded_file = None
+uploaded_images = []
 
 if input_choice == t["mode_text"]:
     final_letter_text = st.text_area(
@@ -37,42 +36,45 @@ if input_choice == t["mode_text"]:
         placeholder="For example: Sehr geehrte Damen und Herren...",
     )
 else:
-    uploaded_file = st.file_uploader(
+    uploaded_files = st.file_uploader(
         "Choose a PDF, TXT file or an image (photo of the letter)", type=["pdf", "txt", "png", "jpg", "jpeg"],
         accept_multiple_files=True
     )
+    extracted_texts = []
+    if uploaded_files:
+        for uploaded_file in uploaded_files:
+            file_extension = uploaded_file.name.split(".")[-1].lower()
 
-    if uploaded_file is not None:
-        file_extension = uploaded_file.name.split(".")[-1].lower()
+            if file_extension in ["png", "jpg", "jpeg"]:
+                uploaded_images.append(uploaded_file)
+                st.success(f"📷 Image '{uploaded_file.name}' uploaded successfully!")
+            else:
+                text = extract_text_from_file(uploaded_file)
+                if text and text.strip():
+                    extracted_texts.append(text)
+                else:
+                    st.warning(
+                        f"⚠️ We were unable to extract text from '{uploaded_file.name}'. "
+                        "It may be a scanned PDF. Try taking a photo of it and uploading it as an image."
+                    )
 
-        if file_extension in ["png", "jpg", "jpeg"]:
-            uploaded_image = uploaded_file
-            st.success("📷 Image uploaded successfully!")
-        else:
-            final_letter_text = extract_text_from_file(uploaded_file)
-            if not final_letter_text.strip():
-                st.warning(
-                    "⚠️ We were unable to extract text from the file. It may be a scanned PDF. Try taking a photo of it and uploading it as an image."
-                )
+        if extracted_texts:
+            final_letter_text = "\n\n".join(extracted_texts)
 
-# Кнопка отправки
 if st.button("Decipher the letter 📩", type="primary"):
     has_text = bool(final_letter_text and final_letter_text.strip())
-    has_image = uploaded_image is not None
+    has_images = len(uploaded_images) > 0
 
-    if not has_text and not has_image:
+    if not has_text and not has_images:
         st.warning(t["error_empty"])
     else:
         with st.spinner(t["spinner"]):
             try:
-                response_json = send_to_llm(
-                    text=final_letter_text if has_text else None,
-                    image_file=uploaded_image,
-                    target_language=target_language,
-                )
+                current_image = uploaded_images[0] if uploaded_images else None
+
                 data = send_to_llm(
                     text=final_letter_text if has_text else None,
-                    image_file=uploaded_image,
+                    image_files=uploaded_images,
                     target_language=target_language,
                 )
 
