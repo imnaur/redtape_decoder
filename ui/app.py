@@ -38,7 +38,8 @@ if input_choice == t["mode_text"]:
     )
 else:
     uploaded_file = st.file_uploader(
-        "Choose a PDF, TXT file or an image (photo of the letter)", type=["pdf", "txt", "png", "jpg", "jpeg"]
+        "Choose a PDF, TXT file or an image (photo of the letter)", type=["pdf", "txt", "png", "jpg", "jpeg"],
+        accept_multiple_files=True
     )
 
     if uploaded_file is not None:
