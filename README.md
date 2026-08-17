@@ -23,6 +23,8 @@ The application translates official German letters or documents into clear, conv
 - **⏰ Deadline & Urgency Tracking:** Instantly highlights critical dates and tells you what happens if you ignore the letter.
 - **📌 Executive Summary:** Breaks down complex administrative texts into simple bullet points.
 - **🎨 Clean UI:** Built with Streamlit for a smooth and intuitive user experience.
+- **👁️ Multimodal Support: Upload images (photos/scans) of letters directly alongside plain text.
+- **🛡️ Structured Data & Validation: Powered by Pydantic to ensure strict data validation and type safety for all LLM responses.
 
 ---
 
@@ -56,6 +58,10 @@ Frontend / UI: Streamlit
 
 AI / LLM Integration: Custom core client (core.llm_client) communicating with modern LLMs.
 
+Data Validation: Pydantic (v2)
+
+AI / LLM Integration: OpenAI API (gpt-4o with JSON mode support), custom core client.
+
 Language Processing: Python, JSON parsing.
 
 
@@ -72,3 +78,13 @@ redtape_decoder/
 ├── .venv/                  # Virtual environment
 └── README.md               # Project documentation EN
 └── README_DE.md            # Project documentation GERMAN
+
+## Core Response Schema
+
+class LetterAnalysis(BaseModel):
+    sender: str
+    deadline: Optional[str]
+    action_required: bool
+    summary_simple_de: str
+    translation: str
+    consequences_if_ignored: Optional[str]
