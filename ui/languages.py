@@ -12,6 +12,9 @@ ui_texts = {
         "input_mode": "Как вы хотите передать письмо?",
         "mode_text": "Вставить текст вручную",
         "mode_file": "Загрузить файл (PDF, TXT)",
+        "paste_text": "Вставьте текст письма на немецком языке (Amtsdeutsch):",
+        'letter': 'Расшифруйте письмо 📩',
+        "description": "Как легко разобраться в официальных письмах на немецком языке"
     },
     "Ukrainian": {
         "success": "Готово! Ось чого від Вас хочуть:",
@@ -26,6 +29,9 @@ ui_texts = {
         "input_mode": "Як ви хочете передати лист?",
         "mode_text": "Вставити текст вручну",
         "mode_file": "Завантажити файл (PDF, TXT)",
+        "paste_text": "Вставте текст листа німецькою мовою (Amtsdeutsch):",
+        'letter': 'Розшифруйте лист 📩',
+        "description": "Як легко розшифрувати офіційні німецькі листи"
     },
     "English": {
         "success": "All done! Here is what they want from you:",
@@ -40,6 +46,10 @@ ui_texts = {
         "input_mode": "How would you like to provide the letter?",
         "mode_text": "Paste text manually",
         "mode_file": "Upload a file (PDF, TXT)",
+        "paste_text": "Paste the text of the German letter (Amtsdeutsch):",
+        'letter': 'Decipher the letter 📩',
+        "description": "Decoding official German letters the easy way"
+
     },
     "Simple German (Leichte Sprache)": {
         "success": "Fertig! Das wollen sie von Ihnen:",
@@ -54,5 +64,9 @@ ui_texts = {
         "input_mode": "Wie möchten Sie den Brief übergeben?",
         "mode_text": "Text manuell eingeben",
         "mode_file": "Datei hochladen (PDF, TXT)",
+        "paste_text": "Fügen Sie den Text des deutschen Schreibens (Amtsdeutsch) ein:",
+        'letter': 'Entschlüssele den Brief 📩',
+        "description": "Deutsche Behördenbriefe ganz einfach entschlüsseln"
+
     },
 }

@@ -22,7 +22,7 @@ target_language = st.selectbox(
 t = ui_texts.get(target_language, ui_texts["English"])
 
 st.title("📬 Redtape Decoder")
-st.subheader("Decoding official German letters the easy way")
+st.subheader(t['description'])
 
 input_choice = st.radio(t["input_mode"], [t["mode_text"], t["mode_file"]], horizontal=True)
 
@@ -31,7 +31,7 @@ uploaded_images = []
 
 if input_choice == t["mode_text"]:
     final_letter_text = st.text_area(
-        "Paste the text of the German letter (Amtsdeutsch):",
+        t["paste_text"],
         height=200,
         placeholder="For example: Sehr geehrte Damen und Herren...",
     )
@@ -61,7 +61,7 @@ else:
         if extracted_texts:
             final_letter_text = "\n\n".join(extracted_texts)
 
-if st.button("Decipher the letter 📩", type="primary"):
+if st.button(t['letter'], type="primary"):
     has_text = bool(final_letter_text and final_letter_text.strip())
     has_images = len(uploaded_images) > 0
 
