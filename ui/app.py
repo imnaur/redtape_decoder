@@ -1,15 +1,15 @@
 import sys
 from pathlib import Path
 
+root_dir = Path(__file__).resolve().parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.append(str(root_dir))
+
 import streamlit as st
 
 from core.llm_client import send_to_llm
 from core.processor import extract_text_from_file
 from ui.languages import ui_texts
-
-root_dir = Path(__file__).resolve().parent.parent
-if str(root_dir) not in sys.path:
-    sys.path.append(str(root_dir))
 
 st.set_page_config(page_title="Redtape Decoder", page_icon="📬", layout="centered")
 
